@@ -8,7 +8,7 @@ import Dashboard from "@/pages/Dashboard"
 import Login from "@/pages/Login"
 import Shared from "@/pages/Shared"
 import Profile from "@/pages/Profile"
-import TaskForm from "@/pages/TaskForm"
+import TaskForm from "@/components/TaskForm"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
