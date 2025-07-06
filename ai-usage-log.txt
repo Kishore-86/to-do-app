@@ -1,0 +1,54 @@
+# CyberTask – AI Usage Log
+This file documents how AI tools were used during the development of CyberTask.
+
+--------------------------
+🧠 Tool: ChatGPT (by OpenAI)
+--------------------------
+
+Prompts used:
+
+1. "Give me unique features for a full-stack Todo Task Management app"
+2. "Generate folder structure for a real-time collaborative task manager using React, Node, MongoDB"
+3. "Write complete TailwindCSS-based dark theme React component for TaskCard"
+4. "Give backend code for Socket.IO to support task updates and deletions"
+5. "Generate Mongoose model for Task with sharedWith, priority, dueDate"
+6. "Create a JWT-based auth middleware in Express"
+7. "Generate README.md for a full-stack AI Todo project with good documentation"
+8. "Build a reusable XP progress bar component in React with animation"
+9. "Suggest AI logic for prioritizing tasks based on content and due date"
+10. "What are the best free-tier services to deploy full-stack apps"
+
+Outcome:
+- Used ChatGPT to co-develop and polish both frontend and backend code
+- Saved time and improved structure, scalability, and developer UX
+- Prompts and suggestions were reviewed and manually integrated
+
+--------------------------
+🛠️ Tool: Cursor IDE
+--------------------------
+- Used AI code completions and refactor suggestions
+- Assisted in typing and error fixing
+
+--------------------------
+💡 Tool: Replit (Free Plan)
+--------------------------
+- Used briefly for testing backend APIs in a collaborative environment
+
+--------------------------
+🌐 Tool: GitHub Copilot
+--------------------------
+- Used inside VS Code for boilerplate code suggestions
+- Auto-completed component structures and utility functions
+
+--------------------------
+📌 Final Note
+--------------------------
+All AI usage was for assistance only. Final code was manually reviewed, tested, and refactored to fit project goals.
+
+Hackathon Rule Reference:
+✅ Prompting logs saved  
+✅ Only used open-source/free AI tools  
+✅ AI helped accelerate—but not replace—developer decision-making
+
+This document is part of the official submission for:  
+🛠️ Hackathon by [https://www.katomaran.com](https://www.katomaran.com)
