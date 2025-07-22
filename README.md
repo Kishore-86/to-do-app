@@ -37,15 +37,13 @@ CyberTask is a full-stack, real-time Todo Management Web Application built for p
 
 ## 🗂️ Folder Structure
 
-/to-do-app
-├── backend
-│ ├── routes/
-│ ├── models/
-│ ├── controllers/
-│ └── server.js
-├── frontend
-│ └── (under development)
-└── README.md
+/CyberTask/
+├── client/         ✅ (your frontend folder)
+├── server/         ✅ (your backend folder)
+├── README.md
+├── ai-usage-log.txt
+├── architecture-diagram.png
+└── .gitignore
 
 
 ---

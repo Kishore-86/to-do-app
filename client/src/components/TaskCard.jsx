@@ -1,15 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-<<<<<<< HEAD
-import { CheckCircle, Clock, Users } from "lucide-react"
-import { motion } from "framer-motion"
-
-const priorityColors = {
-  high: "bg-red-600 text-white",
-  medium: "bg-yellow-400 text-black",
-  low: "bg-green-600 text-white",
-=======
 import { CheckCircle, Clock, User2, Calendar, Flag } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -23,7 +14,6 @@ const priorityIcons = {
   high: "🔥",
   medium: "⚡",
   low: "🌱"
->>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
 }
 
 export function TaskCard({ task, onClick, onToggleStatus, onEdit, onDelete }) {
@@ -37,14 +27,8 @@ export function TaskCard({ task, onClick, onToggleStatus, onEdit, onDelete }) {
   } = task
 
   const isDone = status === "completed"
-<<<<<<< HEAD
-  const formattedDue = dueDate ? new Date(dueDate).toLocaleDateString() : "No due date"
-
-  return (
-    <motion.div
-      whileHover={{ scale: 1.025 }}
-=======
   const isOverdue = dueDate && new Date(dueDate) < new Date() && !isDone
+  const formattedDue = dueDate ? new Date(dueDate).toLocaleDateString() : "No due date"
 
   return (
     <motion.div
@@ -53,64 +37,10 @@ export function TaskCard({ task, onClick, onToggleStatus, onEdit, onDelete }) {
         y: -4,
         transition: { type: "spring", stiffness: 300, damping: 20 }
       }}
->>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
       whileTap={{ scale: 0.98 }}
       layout
       transition={{ type: "spring", stiffness: 250, damping: 18 }}
       onClick={() => onClick?.(task)}
-<<<<<<< HEAD
-      className="group"
-    >
-      <Card
-        className={cn(
-          "w-full shadow-sm border border-border cursor-pointer bg-card group-hover:shadow-lg transition-all",
-          isDone && "opacity-50"
-        )}
-      >
-        <CardContent className="p-5 space-y-3">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-lg font-semibold">{title}</h3>
-              {description && (
-                <p className="text-muted-foreground text-xs mt-1 line-clamp-2">{description}</p>
-              )}
-            </div>
-            <button
-              onClick={e => { e.stopPropagation(); onToggleStatus?.(task); }}
-              className={cn("rounded-full border ml-2 p-2 bg-background hover:bg-accent",
-                isDone ? "text-green-500" : "text-gray-400 hover:text-green-500"
-              )}
-              title={isDone ? "Completed" : "Mark as completed"}
-            >
-              {isDone ?
-                <CheckCircle className="w-5 h-5" /> :
-                <Clock className="w-5 h-5" />
-              }
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-1 items-center">
-            <Badge className={cn(priorityColors[priority] || "bg-gray-300 text-black","font-semibold")}>
-              {priority?.toUpperCase()}
-            </Badge>
-            <Badge variant="outline">
-              <span className={cn(
-                dueDate && new Date(dueDate) < new Date() && status !== "completed" ? "text-red-500 font-semibold" : ""
-              )}>
-                {formattedDue}
-              </span>
-            </Badge>
-            {sharedWith.length > 0 && (
-              <Badge variant="outline">
-                <Users className="w-4 h-4 mr-1" />
-                {sharedWith.length}
-              </Badge>
-            )}
-          </div>
-          <div className="flex gap-2 mt-2">
-            <button onClick={() => onEdit(task)} className="btn btn-sm btn-outline">Edit</button>
-            <button onClick={() => onDelete(task)} className="btn btn-sm btn-danger">Delete</button>
-          </div>
-=======
       className="cursor-pointer group"
     >
       <Card
@@ -186,7 +116,7 @@ export function TaskCard({ task, onClick, onToggleStatus, onEdit, onDelete }) {
               )}
             >
               <Calendar className="w-3 h-3 mr-1" />
-              {due}
+              {formattedDue}
             </Badge>
 
             {/* Shared badge */}
@@ -225,7 +155,6 @@ export function TaskCard({ task, onClick, onToggleStatus, onEdit, onDelete }) {
 
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 rounded-lg transition-all duration-300 pointer-events-none" />
->>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
         </CardContent>
       </Card>
     </motion.div>

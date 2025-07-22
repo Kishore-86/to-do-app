@@ -111,3 +111,13 @@ export const getMyTasks = async () => {
   if (!res.ok) throw new Error("Failed to fetch my tasks")
   return res.json()
 }
+
+export async function getTasks(params = {}) {
+  // Example using fetch, adjust URL as needed
+  const query = new URLSearchParams(params).toString()
+  const res = await fetch(`/api/tasks?${query}`)
+  if (!res.ok) throw new Error("Failed to fetch tasks")
+  return await res.json()
+}
+
+// Add similar exports for updateTask, deleteTask, etc. if needed

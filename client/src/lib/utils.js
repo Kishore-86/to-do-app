@@ -1,20 +1,13 @@
-<<<<<<< HEAD
-import { clsx } from "clsx";
+import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs) {
-  return twMerge(clsx(inputs));
-}
-=======
-import { clsx } from "clsx"
-
 /**
- * Combines class names using clsx
+ * Combines class names using clsx and tailwind-merge
  * @param {...any} inputs - Class names to combine
  * @returns {string} Combined class names
  */
 export function cn(...inputs) {
-  return clsx(inputs)
+  return twMerge(clsx(inputs))
 }
 
 /**
@@ -41,4 +34,3 @@ export function truncateText(text, length = 100) {
   if (!text) return ""
   return text.length > length ? `${text.substring(0, length)}...` : text
 }
->>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
