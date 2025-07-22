@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+<<<<<<< HEAD
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-toast": "^1.2.14",
     "@tanstack/react-query": "^5.23.1",
@@ -21,6 +22,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
+=======
+    "@tanstack/react-query": "^5.23.1",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.445.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+>>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
     "react-router-dom": "^6.22.3",
     "socket.io-client": "^4.7.5",
     "tailwind-merge": "^3.3.1"

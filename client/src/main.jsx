@@ -8,11 +8,14 @@ import Login from "@/pages/Login"
 import Shared from "@/pages/Shared"
 import Profile from "@/pages/Profile"
 import TaskForm from "@/components/TaskForm"
+<<<<<<< HEAD
 import { Toaster } from "react-hot-toast"
 
 function ErrorBoundary({ children }) {
   return children
 }
+=======
+>>>>>>> ef0c36ef7e235f38ed5b7f70e4a2a51eed2916a3
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
