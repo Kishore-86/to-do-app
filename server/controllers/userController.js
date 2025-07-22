@@ -1,4 +1,4 @@
-import User from "../models/userModel.js"
+import User from '../models/User.js'
 
 // @desc   Get authenticated user profile
 // @route  GET /api/user/profile

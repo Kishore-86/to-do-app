@@ -1,44 +1,15 @@
 import mongoose from "mongoose"
 
-const taskSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: [true, "Task title is required"],
-    },
-    description: {
-      type: String,
-    },
-    status: {
-      type: String,
-      enum: ["pending", "in progress", "completed"],
-      default: "pending",
-    },
-    priority: {
-      type: String,
-      enum: ["low", "medium", "high"],
-      default: "medium",
-    },
-    dueDate: {
-      type: Date,
-    },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    sharedWith: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-  },
-  {
-    timestamps: true, // Adds createdAt and updatedAt
-  }
-)
+const taskSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: String,
+  dueDate: Date,
+  priority: { type: String, enum: ["low", "medium", "high"], default: "medium" },
+  status: { type: String, enum: ["pending", "in-progress", "completed"], default: "pending" },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  sharedWith: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+})
 
-const Task = mongoose.model("Task", taskSchema)
-
-export default Task
+export default mongoose.model("Task", taskSchema)

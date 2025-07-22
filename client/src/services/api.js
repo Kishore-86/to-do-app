@@ -103,3 +103,11 @@ export const getUserProfile = async () => {
   if (!res.ok) throw new Error("Failed to fetch user profile")
   return res.json()
 }
+
+export const getMyTasks = async () => {
+  const res = await fetch(`${BASE_URL}/api/tasks/my`, {
+    headers: authHeaders(),
+  })
+  if (!res.ok) throw new Error("Failed to fetch my tasks")
+  return res.json()
+}

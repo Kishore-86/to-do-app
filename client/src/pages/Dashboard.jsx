@@ -1,104 +1,63 @@
 import { useEffect, useState } from "react"
 import TaskCard from "@/components/TaskCard"
-import AIButton from "@/components/AIButton"
-import XPProgressBar from "@/components/XPProgressBar"
+import { getTasks, updateTask, deleteTask } from "@/services/api"
 import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
-import { getAllTasks, markTaskComplete } from "@/services/api"
 import { useNavigate } from "react-router-dom"
+import { Toaster } from "react-hot-toast"
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [aiLoading, setAiLoading] = useState(false)
-  const [xp, setXP] = useState(120)
-  const [level, setLevel] = useState(2)
-
+  const [filter, setFilter] = useState("all")
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const data = await getAllTasks()
-        setTasks(data)
-      } catch (error) {
-        console.error("Failed to fetch tasks", error)
-      } finally {
-        setLoading(false)
-      }
-    }
     fetchTasks()
-  }, [])
+  }, [filter])
 
-  const handleTaskClick = (task) => {
-    navigate(`/edit/${task._id}`)
+  const fetchTasks = async () => {
+    const data = await getTasks({ status: filter === "all" ? undefined : filter })
+    setTasks(data)
   }
 
   const handleToggleStatus = async (task) => {
-    try {
-      const updated = await markTaskComplete(task._id, task.status !== "completed")
-      const updatedTasks = tasks.map((t) =>
-        t._id === task._id ? { ...t, status: updated.status } : t
-      )
-      setTasks(updatedTasks)
-
-      // XP logic (example only)
-      if (updated.status === "completed") {
-        setXP((prevXP) => prevXP + 20)
-        if ((xp + 20) % 100 === 0) setLevel((prev) => prev + 1)
-      }
-    } catch (error) {
-      console.error("Error updating task status", error)
-    }
+    await updateTask(task._id, { status: task.status === "completed" ? "pending" : "completed" })
+    fetchTasks()
   }
 
-  const handleAISort = async () => {
-    setAiLoading(true)
-    try {
-      // You could call an AI endpoint here
-      const sorted = [...tasks].sort((a, b) => {
-        const priorityMap = { high: 3, medium: 2, low: 1 }
-        return priorityMap[b.priority] - priorityMap[a.priority]
-      })
-      setTasks(sorted)
-    } finally {
-      setAiLoading(false)
-    }
+  const handleDelete = async (task) => {
+    await deleteTask(task._id)
+    fetchTasks()
   }
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-bold">My Tasks</h1>
-          <XPProgressBar xp={xp} level={level} />
-        </div>
-
-        <div className="flex gap-3">
-          <AIButton onClick={handleAISort} loading={aiLoading} />
-          <Button onClick={() => navigate("/create")}>
-            <Plus className="w-4 h-4 mr-1" />
-            New Task
-          </Button>
-        </div>
+    <div className="p-6 space-y-6">
+      <Toaster position="top-right" />
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">My Tasks</h1>
+        <Button onClick={() => navigate("/create")}>+ New Task</Button>
       </div>
 
-      {loading ? (
-        <p className="text-muted-foreground text-sm">Loading tasks...</p>
-      ) : tasks.length === 0 ? (
-        <p className="text-muted-foreground text-sm">No tasks yet. Add one!</p>
-      ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {tasks.map((task) => (
-            <TaskCard
-              key={task._id}
-              task={task}
-              onClick={handleTaskClick}
-              onToggleStatus={handleToggleStatus}
-            />
-          ))}
-        </div>
-      )}
+      <div className="flex gap-2 mb-4">
+        {["all", "pending", "in-progress", "completed"].map(f => (
+          <button
+            key={f}
+            className={`btn ${filter === f ? "btn-primary" : "btn-outline"}`}
+            onClick={() => setFilter(f)}
+          >{f[0].toUpperCase() + f.slice(1)}</button>
+        ))}
+      </div>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tasks.map(task => (
+          <TaskCard
+            key={task._id}
+            task={task}
+            onToggleStatus={handleToggleStatus}
+            onEdit={() => {/* open edit modal */}}
+            onDelete={handleDelete}
+          />
+        ))}
+      </div>
     </div>
   )
 }

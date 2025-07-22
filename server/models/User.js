@@ -2,33 +2,16 @@ import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema(
   {
-    googleId: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    avatar: {
-      type: String,
-    },
-    xp: {
-      type: Number,
-      default: 0,
-    },
+    name: String,
+    email: { type: String, unique: true },
+    avatar: String,
+    provider: String, // e.g. "google"
+    providerId: String,
+    createdAt: { type: Date, default: Date.now },
   },
   {
     timestamps: true,
   }
 )
 
-const User = mongoose.model("User", userSchema)
-
-export default User
+export default mongoose.model("User", userSchema)
